@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    public Camera fPCamera;
+    public Camera firstPersonCamera;
 
     public float sensitivityX = 15F;
     public float sensitivityY = 15F;
@@ -15,7 +15,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Awake()
     {
-        fPCamera = GetComponentInChildren<Camera>();
+        firstPersonCamera = GetComponentInChildren<Camera>();
     }
 
     private void Start()
@@ -26,10 +26,12 @@ public class PlayerLook : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        //looks up and down
         rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);//CLAMP!
-        fPCamera.transform.localRotation = Quaternion.EulerAngles(-rotationY,0, 0);
+        firstPersonCamera.transform.localRotation = Quaternion.EulerAngles(-rotationY,0, 0);
 
+        //looks left and right
         rotationX += Input.GetAxis("Mouse X") * sensitivityX;
         transform.rotation = Quaternion.EulerAngles(0,rotationX,0);
     }

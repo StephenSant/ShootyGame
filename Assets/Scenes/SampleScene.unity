@@ -290,8 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fPCamera: {fileID: 0}
-  sensitivityX: 0.1
-  sensitivityY: 0.1
+  sensitivityX: 0.025
+  sensitivityY: 0.025
   minimumY: -1.5
   maximumY: 1.5
   rotationY: 0

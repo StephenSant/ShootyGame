@@ -19,12 +19,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //moves the player 
-        rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime) + (transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime));
-        //jump
+        Move();
+
         if (Input.GetButtonDown("Jump"))
         {
-            rigid.AddForce(transform.up * jumpHeight);
+            Jump();
         }
+    }
+
+    public void Move()
+    {
+        rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime) + (transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime));
+    }
+    public void Jump()
+    {
+        rigid.AddForce(transform.up * jumpHeight);
     }
 }
