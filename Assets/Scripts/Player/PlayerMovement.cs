@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump()
     {
-        rigid.AddForce(transform.up * jumpHeight,ForceMode.Impulse);
+        rigid.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
     }
     void GroundCheck()
     {

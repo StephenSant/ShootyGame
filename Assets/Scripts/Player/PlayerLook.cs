@@ -6,11 +6,11 @@ public class PlayerLook : MonoBehaviour
 {
     public Camera firstPersonCamera;
 
-    public float sensitivityX = 15F;
-    public float sensitivityY = 15F;
-    public float minimumY = -60F;
-    public float maximumY = 60F;
-    [SerializeField]
+    public float sensitivityX = 0.025F;
+    public float sensitivityY = 0.025F;
+    public float minimumY = -1.5F;
+    public float maximumY = 1.5F;
+
     float rotationY, rotationX;
 
     private void Awake()
