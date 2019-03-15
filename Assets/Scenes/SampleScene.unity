@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9707815415c4dc34fb7eec07a09393a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fPCamera: {fileID: 0}
+  firstPersonCamera: {fileID: 0}
   sensitivityX: 0.025
   sensitivityY: 0.025
   minimumY: -1.5
@@ -308,8 +308,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpHeight: 250
+  jumpHeight: 2.5
   rigid: {fileID: 0}
+  isGrounded: 0
 --- !u!114 &665620262
 MonoBehaviour:
   m_ObjectHideFlags: 0

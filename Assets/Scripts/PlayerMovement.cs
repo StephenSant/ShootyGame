@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody rigid;
 
+    public bool isGrounded;
+
     // Use this for initialization
     void Awake()
     {
@@ -21,10 +23,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump") && isGrounded)
         {
             Jump();
         }
+        GroundCheck();
     }
 
     public void Move()
@@ -33,6 +36,20 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump()
     {
-        rigid.AddForce(transform.up * jumpHeight);
+        rigid.AddForce(transform.up * jumpHeight,ForceMode.Impulse);
+    }
+    void GroundCheck()
+    {
+        RaycastHit hit;
+        float distance = 1.1f;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, distance))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 }
