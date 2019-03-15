@@ -8,6 +8,7 @@ public class AutoRifle : MonoBehaviour
     public float range = 10f;
     public GameObject bulletPrefab;
     public Transform muzzle;
+    public float timetoFire;
 	// Use this for initialization
 	void Start ()
     {
@@ -15,9 +16,9 @@ public class AutoRifle : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate ()
+	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Shoot();
         }
@@ -25,7 +26,9 @@ public class AutoRifle : MonoBehaviour
     void Shoot()
     {
         GameObject clone = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
-
-        
     }
+    //IEnumerator RateOfFire()
+    //{
+
+    //}
 }

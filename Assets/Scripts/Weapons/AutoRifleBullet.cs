@@ -36,6 +36,6 @@ public class AutoRifleBullet : MonoBehaviour
     }
     private void DestroyBullet()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 7);
     }
 }
