@@ -4,24 +4,50 @@ using UnityEngine;
 
 public class Boomerang : MonoBehaviour {
 
-    public float speed;
-    public bool hasBounced;
+    public float speed = 500;
+    public bool hasBounced = false;
+    public Transform player;
 
     Rigidbody rigid;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
+        player = GameObject.Find("Player").transform;
     }
 
-    // Use this for initialization
-    void Start ()
+    private void OnCollisionEnter(Collision collision)
     {
-        rigid.velocity = Vector3.forward*speed*Time.deltaTime;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        if (hasBounced)
+        {
+            rigid.useGravity = true;
+            rigid.freezeRotation = false;
+            speed = 0;
+            GetComponent<Boomerang>().enabled = false;
+        }
+        else
+        {
+            hasBounced = true;
+            speed = -speed;
+        }
+        if (collision.transform.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+        Vector3 dir;
+        if (hasBounced)
+        {
+            dir = (transform.position - player.position).normalized;
+        }
+        else
+        {
+            dir = transform.forward;
+        }
+		rigid.velocity = dir*speed*Time.deltaTime;
 	}
 }
