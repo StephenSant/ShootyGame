@@ -26,17 +26,16 @@ public class PlayerManager : MonoBehaviour//Stephen
         curHealth = maxHealth;
     }
 
-    void Shoot()
-    {
-        weapon.PrimaryFire();
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            weapon.PrimaryFire();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            weapon.SecondaryFire();
         }
     }
 }

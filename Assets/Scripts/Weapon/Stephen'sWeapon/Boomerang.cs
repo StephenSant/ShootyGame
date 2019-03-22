@@ -2,52 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boomerang : MonoBehaviour {
-
+public class Boomerang : MonoBehaviour
+{
+    public bool isReturning = false;
     public float speed = 500;
-    public bool hasBounced = false;
-    public Transform player;
+    public float returnSpeed = -500;
+    public bool fall = false;
+    public Transform returnPoint;
 
     Rigidbody rigid;
+    Vector3 dir;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (hasBounced)
-        {
-            rigid.useGravity = true;
-            rigid.freezeRotation = false;
-            speed = 0;
-            GetComponent<Boomerang>().enabled = false;
-        }
-        else
-        {
-            hasBounced = true;
-            speed = -speed;
-        }
         if (collision.transform.tag == "Player")
         {
             Destroy(gameObject);
+            Debug.Log("It dont think it be like it is but it do");
         }
-    }
-
-    // Update is called once per frame
-    void LateUpdate ()
-    {
-        Vector3 dir;
-        if (hasBounced)
+        if (isReturning)
         {
-            dir = (transform.position - player.position).normalized;
+            rigid.useGravity = true;
+            rigid.freezeRotation = false;
+            fall = true;
         }
         else
         {
-            dir = transform.forward;
+            isReturning = true;
         }
-		rigid.velocity = dir*speed*Time.deltaTime;
-	}
+    }
+
+    void Update()
+    {
+        if (!fall)
+        {
+            if (isReturning)
+            {
+                dir = (transform.position - returnPoint.position).normalized;
+                rigid.velocity = dir * returnSpeed * Time.deltaTime;
+            }
+            else
+            {
+                dir = transform.forward;
+                rigid.velocity = dir * speed * Time.deltaTime;
+            }
+        }
+    }
 }

@@ -125,9 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d79bf02abfdda9438e0fe316718f80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isReturning: 0
   speed: 1000
-  hasBounced: 0
-  player: {fileID: 0}
+  returnSpeed: -500
+  fall: 0
+  returnPoint: {fileID: 0}
 --- !u!114 &114287771774957416
 MonoBehaviour:
   m_ObjectHideFlags: 1
