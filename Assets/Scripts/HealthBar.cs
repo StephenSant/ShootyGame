@@ -13,7 +13,7 @@ public class HealthBar : MonoBehaviour
     {
         healthBar = GetComponent<Slider>();
 
-        healthBar.value = curHealth.value;
+        // healthBar.value = curHealth.value;
     }
 
     // Update is called once per frame
