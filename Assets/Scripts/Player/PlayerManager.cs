@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement)), RequireComponent(typeof(PlayerLook))]
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour//Stephen
 {
-   
+
     [Header("Health")]
     public int maxHealth = 100;
     public int curHealth;
-    [Header ("References")]
+    [Header("References")]
     public PlayerMovement movement;
     public PlayerLook look;
+    public Weapon weapon;
 
     private void Awake()
     {
@@ -25,8 +26,17 @@ public class PlayerManager : MonoBehaviour
         curHealth = maxHealth;
     }
 
+    void Shoot()
+    {
+        weapon.PrimaryFire();
+    }
+
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
+    }
 }

@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 23865331536210372}
   - component: {fileID: 54936835960935796}
   - component: {fileID: 114259713648543454}
-  - component: {fileID: 64542813662639638}
+  - component: {fileID: 114287771774957416}
+  - component: {fileID: 65204017711042874}
   m_Layer: 0
   m_Name: Boomarang
   m_TagString: Untagged
@@ -101,8 +102,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!64 &64542813662639638
-MeshCollider:
+--- !u!65 &65204017711042874
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,11 +111,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1.0000001}
+  m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
 --- !u!114 &114259713648543454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,3 +128,35 @@ MonoBehaviour:
   speed: 1000
   hasBounced: 0
   player: {fileID: 0}
+--- !u!114 &114287771774957416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1540134204861286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 47
+    i1: 247
+    i2: 190
+    i3: 80
+    i4: 87
+    i5: 165
+    i6: 224
+    i7: 68
+    i8: 106
+    i9: 109
+    i10: 233
+    i11: 108
+    i12: 67
+    i13: 9
+    i14: 65
+    i15: 194
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

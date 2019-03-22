@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour //Stephen
 {
 
     [Header("Movement Values")]
@@ -64,14 +64,8 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(movement * Time.deltaTime);
     }
 
-    void Shooting()
-    {
-
-    }
-
     void Update()
     {
         Movement();
-        Shooting();
     }
 }

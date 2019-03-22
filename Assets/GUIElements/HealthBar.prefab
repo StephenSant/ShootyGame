@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 224596598814680832}
   - component: {fileID: 114879778449643486}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

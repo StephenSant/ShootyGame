@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerLook : MonoBehaviour
+[RequireComponent(typeof(Camera))]
+public class PlayerLook : MonoBehaviour//Stephen
 {
     public Camera firstPersonCamera;
 

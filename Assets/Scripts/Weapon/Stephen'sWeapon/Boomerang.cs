@@ -13,7 +13,7 @@ public class Boomerang : MonoBehaviour {
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,7 +37,7 @@ public class Boomerang : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void LateUpdate ()
     {
         Vector3 dir;
         if (hasBounced)
