@@ -5,63 +5,73 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
-    public float jumpHeight;
 
+    [Header("Movement Values")]
+    public float moveSpeed = 7.5f;
+    public float jumpHeight = 20f;
+
+    [Header("Physics")]
+    public float gravity = 10f;
+    public float groundRayDistance = 1.1f;
+
+    [Header("References")]
     public CharacterController controller;
 
-    public bool isGrounded;
-
-    Vector3 moveDirection;
+    Vector3 movement;
     float jumpTime;
 
-    // Use this for initialization
+    #region Initialisation
     void Awake()
     {
         controller = GetComponent<CharacterController>();
     }
+    #endregion
 
-    // Update is called once per frame
-    void Update()
+    private void Move(float inputH, float inputV)
     {
-        Move();
-        if (Input.GetButton("Jump") && isGrounded)
-        {
-            Jump();
-        }
-        controller.Move(moveDirection);
-        GroundCheck();
-    }
-    public void Jump()
-    {
-        moveDirection.y++;
-        
-        jumpTime++;
-        if (jumpTime >= jumpHeight)
-        {
-
-        }
-    }
-    public void Move()
-    {
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-        moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection = moveDirection * moveSpeed * Time.deltaTime;
-       
+        Vector3 input = new Vector3(inputH, 0, inputV);
+        input = transform.TransformDirection(input);
+        movement.x = input.x * moveSpeed;
+        movement.z = input.z * moveSpeed;
     }
 
-    void GroundCheck()
+    void Movement()
     {
+        float inputV = Input.GetAxis("Vertical");
+        float inputH = Input.GetAxis("Horizontal");
+        Move(inputH, inputV);
+        Ray groundRay = new Ray(transform.position, -transform.up);
         RaycastHit hit;
-        float distance = 1.5f;
-
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, distance))
+        if (Physics.Raycast(groundRay, out hit, groundRayDistance))
         {
-            isGrounded = true;
+            if (Input.GetButton("Jump"))
+            {
+                movement.y = jumpHeight;
+            }
+            else
+            {
+                movement.y = 0;
+            }
         }
         else
         {
-            isGrounded = false;
+            if (movement.y < -gravity)
+            {
+                movement.y = -gravity;
+            }
         }
+        movement.y -= gravity * Time.deltaTime;
+        controller.Move(movement * Time.deltaTime);
+    }
+
+    void Shooting()
+    {
+
+    }
+
+    void Update()
+    {
+        Movement();
+        Shooting();
     }
 }

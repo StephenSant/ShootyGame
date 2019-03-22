@@ -5,9 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement)), RequireComponent(typeof(PlayerLook))]
 public class PlayerManager : MonoBehaviour
 {
+   
+    [Header("Health")]
+    public int maxHealth = 100;
+    public int curHealth;
+    [Header ("References")]
     public PlayerMovement movement;
     public PlayerLook look;
-
 
     private void Awake()
     {
@@ -16,13 +20,13 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+        curHealth = maxHealth;
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }
