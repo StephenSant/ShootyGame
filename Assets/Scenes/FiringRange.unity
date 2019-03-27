@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -668,6 +668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 563632458}
   - component: {fileID: 563632459}
+  - component: {fileID: 563632460}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -695,7 +696,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 563632457}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69a8c7490aedda440b0771511a14f1b0, type: 3}
   m_Name: 
@@ -706,6 +707,30 @@ MonoBehaviour:
     type: 2}
   muzzle: {fileID: 1501134562}
   timetoFire: 0
+  shotDelay: 0.1
+  magCap: 25
+  currentAmmo: 0
+  reloading: 0
+  firedShots: 0
+--- !u!114 &563632460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 563632457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d25456f89285fc43ad27010cd38d9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rateOfFire: 10
+  projectile: {fileID: 1941460784524692, guid: f141c37aad3f88f4898435850b4ab563, type: 2}
+  curAmmo: 0
+  ammo: 0
+  muzzle: {fileID: 1501134562}
+  pellets: 8
+  wall: {fileID: 0}
+  pelletSpread: 0.5
 --- !u!1 &766241178
 GameObject:
   m_ObjectHideFlags: 0

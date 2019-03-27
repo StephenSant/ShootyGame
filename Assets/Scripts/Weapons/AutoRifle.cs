@@ -25,16 +25,16 @@ public class AutoRifle : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Time.time > timetoFire && currentAmmo > 0  && Time.timeScale == 1 && !reloading)
         {
-            Shoot();
+            //Shoot();
             currentAmmo -= 1;
             firedShots += 1;
         }
 	}
-    public void Shoot()
-    {
-        GameObject clone = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
-        yield return WaitForSeconds(fireRate)
-    }
+    //public void Shoot()
+    //{
+    //    GameObject clone = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
+    //    yield return WaitForSeconds(fireRate);
+    //}
 
     //IEnumerator RateOfFire()
     //{
