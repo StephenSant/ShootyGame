@@ -9,24 +9,33 @@ public class AutoRifle : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform muzzle;
     public float timetoFire;
+    public float shotDelay = 0.1f;
+    public int magCap = 25;
+    public int currentAmmo;
+    public bool reloading;
+    public int firedShots;
 	// Use this for initialization
 	void Start ()
     {
-		
+        currentAmmo = magCap;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && Time.time > timetoFire && currentAmmo > 0  && Time.timeScale == 1 && !reloading)
         {
             Shoot();
+            currentAmmo -= 1;
+            firedShots += 1;
         }
 	}
-    void Shoot()
+    public void Shoot()
     {
         GameObject clone = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
+        yield return WaitForSeconds(fireRate)
     }
+
     //IEnumerator RateOfFire()
     //{
 
