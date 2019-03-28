@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Camera))]
+
 public class PlayerLook : MonoBehaviour//Stephen
 {
     public Camera firstPersonCamera;
@@ -20,6 +20,7 @@ public class PlayerLook : MonoBehaviour//Stephen
 
     private void Start()
     {
+
         HideCursor(true);
     }
 

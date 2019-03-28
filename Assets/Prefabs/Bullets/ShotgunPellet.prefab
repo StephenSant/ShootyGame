@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 135956337347132956}
   - component: {fileID: 114340580159232580}
   - component: {fileID: 54929232310569602}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShotgunPellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1941460784524692}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64e8434ad5d66f6498ca91723a76a86e, type: 3}
   m_Name: 

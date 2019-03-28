@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour//Stephen
     [Header("References")]
     public PlayerMovement movement;
     public PlayerLook look;
-    public Weapon weapon;
+    //public Weapon weapon;
 
     private void Awake()
     {
@@ -27,15 +27,15 @@ public class PlayerManager : MonoBehaviour//Stephen
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            weapon.PrimaryFire();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            weapon.SecondaryFire();
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        weapon.PrimaryFire();
+    //    }
+    //    if (Input.GetMouseButtonDown(1))
+    //    {
+    //        weapon.SecondaryFire();
+    //    }
+    //}
 }

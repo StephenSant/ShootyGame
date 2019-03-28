@@ -7,18 +7,28 @@ public class ShotgunProjectiles : MonoBehaviour
     public int damage = 8;
     public Rigidbody bRigid;
     public int bSpeed = 10;
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+
+
+    private void OnCollisionEnter(Collision collision)
     {
-		
-	}
-	
-    public void Fire(Vector3 direction)
-    {
-        bRigid.AddForce(direction * bSpeed, ForceMode.Impulse);
+        if (collision.gameObject)
+        {
+            if(collision.collider == true)
+            {
+                Destroy(gameObject);
+            }
+
+        }
     }
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerHealth pHealth = other.gameObject.GetComponent<PlayerHealth>();
+            pHealth.SendMessage("TakeDamage", damage);
+            Destroy(gameObject);
+        }
+    }
+
 }
