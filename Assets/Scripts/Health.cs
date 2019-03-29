@@ -2,15 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour {
-
+public class Health : MonoBehaviour
+{
+    public float curHealth;
+    public float maxHealth = 200f;
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        curHealth = maxHealth;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+		if(curHealth >= maxHealth)
+        {
+            curHealth = maxHealth;
+        }
+        if (curHealth <= 0)
+        {
+            Dead();
+        }
 	}
+    public void TakeDamage(float damage)
+    {
+        curHealth -= damage;
+    }
+    void Dead()
+    {
+        Destroy(gameObject);
+    }
 }
