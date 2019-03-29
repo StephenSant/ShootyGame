@@ -73,5 +73,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
         Shooting();
+
     }
 }

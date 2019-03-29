@@ -29,11 +29,11 @@ public class PlayerLook : MonoBehaviour
         //looks up and down
         rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);//CLAMP!
-        firstPersonCamera.transform.localRotation = Quaternion.EulerAngles(-rotationY,0, 0);
+        firstPersonCamera.transform.localRotation = Quaternion.Euler(-rotationY,0, 0);
 
         //looks left and right
         rotationX += Input.GetAxis("Mouse X") * sensitivityX;
-        transform.rotation = Quaternion.EulerAngles(0,rotationX,0);
+        transform.rotation = Quaternion.Euler(0,rotationX,0);
     }
 
     public void HideCursor(bool hide)
