@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour//Stephen
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && weapon == null)
         {
-            Instantiate(Resources.Load("BoomerangGun"))
+            Instantiate(Resources.Load("BoomerangGun"));
         }
     }
 }
