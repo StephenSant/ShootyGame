@@ -11,6 +11,7 @@ public class StoneThrower : MonoBehaviour
     public GameObject projectile;
     public Transform muzzle;
     public LineRenderer line;
+    public GameObject particleHit;
     [Header("Ammo")]
     public int curAmmo;
     public int maxAmmo = 20;
@@ -30,6 +31,8 @@ public class StoneThrower : MonoBehaviour
     private float range = 100f;
     private float lineDelay = 1f;
     //public Transform target;
+    [Header("Damage")]
+    public int damage = 8;
     public void Start()
     {
         playerCamera = GetComponentInParent<Camera>();
@@ -98,42 +101,53 @@ public class StoneThrower : MonoBehaviour
 
         if (canShoot)
         {
-
+            #region Old Crap
             Ray shotgunRay = new Ray(muzzle.position, muzzle.forward);
-            RaycastHit hit;
-            //Debug.DrawRay(muzzle.position, muzzle.forward * range, Color.red);
-            Physics.Raycast(shotgunRay, out hit, range);
-
+            //RaycastHit hit;
+            ////Debug.DrawRay(muzzle.position, muzzle.forward * range, Color.red);
+            //Physics.Raycast(shotgunRay, out hit, range);
+            #endregion
             for (int i = 0; i < pelletsCount; i++)
             {
-                //Vector3 direction = (muzzle.forward + new Vector3(pitch, yaw, roll)) * Mathf.Rad2Deg;
+                RaycastHit hit;
 
+                //Vector3 direction = (muzzle.forward + new Vector3(pitch, yaw, roll)) * Mathf.Rad2Deg;
+                #region Manny's
                 float pitch = Random.Range(-pelletSpread, pelletSpread);
                 float yaw = Random.Range(-pelletSpread, pelletSpread);
                 float roll = Random.Range(-pelletSpread, pelletSpread);
-                Quaternion rotation = muzzle.rotation *
+                Quaternion spreadRotation = muzzle.rotation *
                     Quaternion.AngleAxis(pitch, muzzle.right) *
                     Quaternion.AngleAxis(yaw, muzzle.up) *
                     Quaternion.AngleAxis(roll, muzzle.forward);
+                #endregion
+                Quaternion randomRotation = Random.rotation;
+                spreadRotation = Quaternion.RotateTowards(spreadRotation, randomRotation, Random.Range(0.0f, pelletSpread));
+                print(spreadRotation);
+                if(Physics.Raycast(muzzle.position, spreadRotation * Vector3.forward, out hit, range))
+                {
+                    hit.collider.SendMessage("TakeDamage", damage);
+                    Instantiate(particleHit, hit.point, randomRotation);
 
-                print(rotation);
-
+                }
                 //GameObject clone = Instantiate(projectile, muzzle.position, rotation);
                 //clone.GetComponent<Rigidbody>().velocity = clone.transform.forward * pelletSpeed;
 
                 #region Jordy stuff
-                Transform originalMuzzle = muzzle;
-                muzzle.rotation *= rotation;
+                //Transform originalMuzzle = muzzle;
+                //muzzle.rotation *= rotation;
 
-                Ray spreadRay = new Ray(muzzle.position, muzzle.forward);
+                //Ray spreadRay = new Ray(muzzle.position, muzzle.forward);
 
-                if (Physics.Raycast(spreadRay, out hit, range))
-                {
-                    print(hit.collider.name);
-                    Debug.DrawLine(muzzle.position, hit.point);
-                }
+                //if (Physics.Raycast(spreadRay, out hit, range))
+                //{
+                //    print(hit.collider.name);
+                //    Debug.DrawLine(muzzle.position, hit.point);
 
-                muzzle = originalMuzzle;
+                //    hit.collider.SendMessage("TakeDamage", damage);
+                //}
+
+                //muzzle = originalMuzzle;
 
                 //Destroy(clone, 5);
                 #endregion

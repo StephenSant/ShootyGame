@@ -608,6 +608,7 @@ Transform:
   m_Children:
   - {fileID: 1000765407}
   - {fileID: 2004642656}
+  - {fileID: 1013136283}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -828,15 +829,18 @@ MonoBehaviour:
   projectile: {fileID: 1941460784524692, guid: f141c37aad3f88f4898435850b4ab563, type: 2}
   muzzle: {fileID: 1501134562}
   line: {fileID: 563632461}
+  particleHit: {fileID: 1054902679308156, guid: 58c762153cfda0f46951498da7389ae2,
+    type: 2}
   curAmmo: 0
   maxAmmo: 20
   isReloading: 0
   pelletsCount: 8
   pelletSpeed: 80
-  pelletSpread: 1
+  pelletSpread: 2
   rateOfFire: 1.2
   spawnWallRange: 20
   playerCamera: {fileID: 0}
+  damage: 8
 --- !u!120 &563632461
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1280,7 +1284,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 2871
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1316,11 +1320,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1013136282}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3.48, y: 100, z: -9.98}
+  m_LocalPosition: {x: 0, y: 96.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 275405632}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!81 &1013136284
 AudioListener:
@@ -1386,7 +1390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1046112144
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1948,7 +1952,7 @@ GameObject:
   - component: {fileID: 1692083604}
   - component: {fileID: 1692083603}
   - component: {fileID: 1692083602}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
