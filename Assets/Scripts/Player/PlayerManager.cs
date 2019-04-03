@@ -37,5 +37,10 @@ public class PlayerManager : MonoBehaviour//Stephen
         {
             weapon.SecondaryFire();
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && weapon == null)
+        {
+            Instantiate(Resources.Load("BoomerangGun"))
+        }
     }
 }

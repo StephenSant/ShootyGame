@@ -20,10 +20,9 @@ public class Boomerang : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.CompareTag("Player"))
         {
             Destroy(gameObject);
-            Debug.Log("It dont think it be like it is but it do");
         }
         if (isReturning)
         {
