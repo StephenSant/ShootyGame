@@ -2,45 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovement)), RequireComponent(typeof(PlayerLook))]
+[RequireComponent(typeof(PlayerMovement))][ RequireComponent(typeof(PlayerLook))] [RequireComponent(typeof(Health))]
 public class PlayerManager : MonoBehaviour//Stephen
 {
 
-    [Header("Health")]
-    public int maxHealth = 100;
-    public int curHealth;
     [Header("References")]
     public PlayerMovement movement;
     public PlayerLook look;
-    public Weapon weapon;
+    public Transform weaponPos;
+    public Health playerHealth;
+
+    GameObject gun; //weapon held as a gameobject
+    Weapon weapon; //will grab the weapon type script from the gun
+    
 
     private void Awake()
     {
         movement = GetComponent<PlayerMovement>();
         look = GetComponent<PlayerLook>();
-
-    }
-
-    private void Start()
-    {
-        curHealth = maxHealth;
+        playerHealth = GetComponent<Health>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (weapon != null)
         {
-            weapon.PrimaryFire();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            weapon.SecondaryFire();
+            if (Input.GetMouseButtonDown(0))
+            {
+                weapon.PrimaryFire();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                weapon.SecondaryFire();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && weapon == null)
         {
-            Instantiate(Resources.Load("BoomerangGun"))
+            gun = (GameObject)Instantiate(Resources.Load("Boomerang Gun"), weaponPos);
+            weapon = gun.GetComponent<Weapon>();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            weapon = null;
+            Destroy(gun);
         }
     }
 }

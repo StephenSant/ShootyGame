@@ -22,8 +22,9 @@ public class BoomerangGun : Weapon
     {
         if (boomerang != null)
         {
-            boomerang.GetComponent<Boomerang>().returnPoint = transform.parent.parent.transform;
+            boomerang.GetComponent<Boomerang>().returnPoint = transform.parent.parent.parent.transform;
         }
+
     }
 
 

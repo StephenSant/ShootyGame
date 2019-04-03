@@ -13,7 +13,7 @@ Prefab:
   m_IsPrefabAsset: 1
 --- !u!1 &1020515726931512
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -58,9 +58,10 @@ GameObject:
   - component: {fileID: 114209250625091774}
   - component: {fileID: 114688977045511706}
   - component: {fileID: 143432543091548660}
+  - component: {fileID: 114724141049851088}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: LocalPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +77,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4662663106584322}
-  - {fileID: 4565524412807580}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -87,11 +87,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020515726931512}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.9}
-  m_LocalScale: {x: 0.25, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0.5, y: -0.5, z: 0.9000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4264310569015386}
-  m_RootOrder: 1
+  m_Father: {fileID: 4662663106584322}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4662663106584322
 Transform:
@@ -102,7 +102,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4565524412807580}
   m_Father: {fileID: 4264310569015386}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -206,11 +207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81abd04db88a454fa4785bfb2acbbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  curHealth: 0
   movement: {fileID: 0}
   look: {fileID: 0}
-  weapon: {fileID: 0}
+  weaponPos: {fileID: 4565524412807580}
+  playerHealth: {fileID: 0}
 --- !u!114 &114209250625091774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +243,19 @@ MonoBehaviour:
   sensitivityY: 0.025
   minimumY: -1.5
   maximumY: 1.5
+--- !u!114 &114724141049851088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402894433387586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9615d5368ab6c72459b36a3a4d6b2e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  curHealth: 0
 --- !u!136 &136543142380542058
 CapsuleCollider:
   m_ObjectHideFlags: 1
