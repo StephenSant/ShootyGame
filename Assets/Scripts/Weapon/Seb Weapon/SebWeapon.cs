@@ -64,7 +64,7 @@ public class SebWeapon : MonoBehaviour
     {
         timerToFire += Time.deltaTime;
 
-        if(timerToFire >= maxRateOfFireTime)
+        if (timerToFire >= maxRateOfFireTime)
         {
             ifCanShoot = true;
         }
@@ -75,13 +75,16 @@ public class SebWeapon : MonoBehaviour
         }
         Debug.DrawRay(shootPoint.position, shootPoint.forward * range, Color.magenta);
 
-        if(ifCanShoot == true)
+
+        if (ifCanShoot == true)
         {
             if (Input.GetMouseButton(0))
             {
                 Fire();
 
-
+                GetComponent<LineRenderer>().SetPosition(0, shootPoint.position);
+                GetComponent<LineRenderer>().SetPosition(1, shootPoint.position + (shootPoint.forward * range));
+                GetComponent<LineRenderer>().enabled = true;
 
             }
         }
