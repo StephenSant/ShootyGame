@@ -121,6 +121,7 @@ public class StoneThrower : MonoBehaviour
                 //GameObject clone = Instantiate(projectile, muzzle.position, rotation);
                 //clone.GetComponent<Rigidbody>().velocity = clone.transform.forward * pelletSpeed;
 
+                #region Jordy stuff
                 Transform originalMuzzle = muzzle;
                 muzzle.rotation *= rotation;
 
@@ -135,6 +136,7 @@ public class StoneThrower : MonoBehaviour
                 muzzle = originalMuzzle;
 
                 //Destroy(clone, 5);
+                #endregion
 
             }
             curAmmo--;
