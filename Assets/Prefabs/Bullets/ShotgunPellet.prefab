@@ -114,7 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 8
   bRigid: {fileID: 54929232310569602}
-  bSpeed: 10
+  bSpeed: 80
+  range: 10
+  muzzle: {fileID: 0}
 --- !u!135 &135956337347132956
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -835,8 +835,8 @@ MonoBehaviour:
   maxAmmo: 20
   isReloading: 0
   pelletsCount: 8
-  pelletSpeed: 80
-  pelletSpread: 2
+  pelletSpeed: 500
+  pelletSpread: 1
   rateOfFire: 1.2
   spawnWallRange: 20
   playerCamera: {fileID: 0}

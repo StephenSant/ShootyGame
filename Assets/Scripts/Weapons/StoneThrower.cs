@@ -20,7 +20,7 @@ public class StoneThrower : MonoBehaviour
     public bool isReloading;
     [Header("Spread")]
     public int pelletsCount = 8;
-    public float pelletSpeed = 10;
+    public float pelletSpeed = 80;
     public float pelletSpread = 5f;
     public float rateOfFire = 2.6f;
     [Header("Wall")]
@@ -124,11 +124,14 @@ public class StoneThrower : MonoBehaviour
                 Quaternion randomRotation = Random.rotation;
                 spreadRotation = Quaternion.RotateTowards(spreadRotation, randomRotation, Random.Range(0.0f, pelletSpread));
                 print(spreadRotation);
-                if(Physics.Raycast(muzzle.position, spreadRotation * Vector3.forward, out hit, range))
+                Physics.Raycast(muzzle.position, spreadRotation * Vector3.forward, out hit, range);
+                GameObject clone = Instantiate(projectile, muzzle.position, spreadRotation);
+                clone.GetComponent<Rigidbody>().velocity = clone.transform.forward * pelletSpeed;
+                if (Physics.Raycast(muzzle.position, spreadRotation * Vector3.forward, out hit, range))
                 {
                     hit.collider.SendMessage("TakeDamage", damage);
-                    Instantiate(particleHit, hit.point, randomRotation);
-
+                    Instantiate(particleHit, hit.point, spreadRotation);
+                    
                 }
                 //GameObject clone = Instantiate(projectile, muzzle.position, rotation);
                 //clone.GetComponent<Rigidbody>().velocity = clone.transform.forward * pelletSpeed;
@@ -156,7 +159,7 @@ public class StoneThrower : MonoBehaviour
             curAmmo--;
 
 
-            StartCoroutine(ShotLine(shotgunRay, lineDelay));
+            //StartCoroutine(ShotLine(shotgunRay, lineDelay));
             shootTimer = 0;
             canShoot = false;
 
@@ -232,15 +235,15 @@ public class StoneThrower : MonoBehaviour
         isReloading = false;
         canShoot = true;
     }
-    IEnumerator ShotLine(Ray shotgunRay, float lineDelay)
-    {
-        //Run logic before
-        line.enabled = true;
-        line.SetPosition(0, shotgunRay.origin);
-        line.SetPosition(1, shotgunRay.origin + shotgunRay.direction * range);
-        yield return new WaitForSeconds(lineDelay);
-        //Run logic after
-        line.enabled = false;
-    }
+    //IEnumerator ShotLine(Ray shotgunRay, float lineDelay)
+    //{
+    //    //Run logic before
+    //    line.enabled = true;
+    //    line.SetPosition(0, shotgunRay.origin);
+    //    line.SetPosition(1, shotgunRay.origin + shotgunRay.direction * range);
+    //    yield return new WaitForSeconds(lineDelay);
+    //    //Run logic after
+    //    line.enabled = false;
+    //}
 }
 
