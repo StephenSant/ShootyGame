@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - LocalPlayer
+  - StoneThrowerWall
+  - Minimap
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - Bullet
+  - MinimapLayer
+  - walltest
   - 
   - 
   - 
