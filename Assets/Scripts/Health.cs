@@ -9,7 +9,7 @@ public abstract class Health : MonoBehaviour
     public int curHealth;
     public bool isDead;
     // Use this for initialization
-    protected virtual void Start ()
+    public virtual void Start ()
     {
         curHealth = maxHealth;
 	}
@@ -19,7 +19,7 @@ public abstract class Health : MonoBehaviour
         curHealth -= damage;
     }
 
-    protected virtual void Update()
+    public virtual void Update()
     {
         if (curHealth > maxHealth)
         {
