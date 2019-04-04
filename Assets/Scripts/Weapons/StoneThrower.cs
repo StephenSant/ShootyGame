@@ -22,6 +22,7 @@ public class StoneThrower : Weapon
     [Header("Camera")]
     public Camera playerCamera;
     private float range = 100f;
+
     //public Transform target;
     protected override void Start()
     {
@@ -51,9 +52,7 @@ public class StoneThrower : Weapon
     {
         if (canShoot)
         {
-            #region Old Crap
-            Ray shotgunRay = new Ray(muzzle.position, muzzle.forward);
-            #endregion
+
 
             rays = new List<Ray>();
             hits = new List<Vector3>();
