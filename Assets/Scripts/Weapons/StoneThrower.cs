@@ -22,6 +22,7 @@ public class StoneThrower : Weapon
     [Header("Camera")]
     public Camera playerCamera;
     private float range = 100f;
+
     //public Transform target;
     protected override void Start()
     {
@@ -51,9 +52,7 @@ public class StoneThrower : Weapon
     {
         if (canShoot)
         {
-            #region Old Crap
-            Ray shotgunRay = new Ray(muzzle.position, muzzle.forward);
-            #endregion
+
 
             rays = new List<Ray>();
             hits = new List<Vector3>();
@@ -81,7 +80,7 @@ public class StoneThrower : Weapon
                 Physics.Raycast(muzzle.position, spreadRotation * Vector3.forward, out hit, range);
                 GameObject clone = Instantiate(projectile, muzzle.position, spreadRotation);
                 clone.GetComponent<Rigidbody>().velocity = clone.transform.forward * pelletSpeed;
-
+                Destroy(clone, 1.75f);
                 Ray bulletRay = new Ray(muzzle.position, spreadRotation * Vector3.forward);
                 rays.Add(bulletRay);
 
@@ -92,6 +91,7 @@ public class StoneThrower : Weapon
                     //health.TakeDamage(damage);
                     hit.collider.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
                     Instantiate(particleHit, hit.point, spreadRotation);
+                    Destroy(particleHit, 1.1f);
                     hitSomething = true;
                     hits.Add(hit.point);
                 }

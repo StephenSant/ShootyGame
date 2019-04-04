@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class ShotgunProjectiles : MonoBehaviour
 {
-    public int damage = 8;
+
     public Rigidbody bRigid;
-    public int bSpeed = 10;
     // Use this for initialization
-    public float range = 10f;
-    public Transform muzzle;
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -23,12 +21,6 @@ public class ShotgunProjectiles : MonoBehaviour
         }
     }
 
-    public void HitEnemy()
-    {
-        
-        //RaycastHit hit;
-        //if(Physics.Raycast())
-    }
 
     private void OnTriggerEnter(Collider other)
     {
