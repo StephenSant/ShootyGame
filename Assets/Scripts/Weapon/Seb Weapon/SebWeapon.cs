@@ -10,7 +10,8 @@ public class SebWeapon : MonoBehaviour
     public float speed = 5f;
     public int ammo = 30;
     public float maxRateOfFireTime = 1f;
-    public float range = 10f;
+    public float range = 7f;
+    public float lineDelay = .05f;
     public Transform shootPoint;
     protected int currentAmmo;
     private float timerToFire;
@@ -18,16 +19,16 @@ public class SebWeapon : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3 hitPoint;
 
+    private void Awake()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+    }
+
     private void Start()
     {
 
         currentAmmo = ammo;
     }
-    void LineRenderer()
-    {
-        lineRenderer = GetComponent<LineRenderer>();
-    }
-
 
     public void Reload()
     {
@@ -39,6 +40,11 @@ public class SebWeapon : MonoBehaviour
     {
         //creates a Ray, that starts at the position of the muzzle(A.K.A shootpoint), and directs it on the BLUE axis where the muzzle is facing in the world
         Ray shotRay = new Ray(shootPoint.position, shootPoint.forward);
+
+
+        Vector3 start = shootPoint.position;
+        Vector3 end = shootPoint.position + shootPoint.forward * range;
+        
         //Creates a "hit", which retrieves information where the ray hits
         RaycastHit hit;
         Physics.Raycast(shotRay, out hit, range);
@@ -47,6 +53,7 @@ public class SebWeapon : MonoBehaviour
         if (Physics.Raycast(shotRay, out hit, range))   
         {
             hitPoint = hit.point;
+            end = hitPoint;
             hit.collider.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
 
@@ -56,9 +63,22 @@ public class SebWeapon : MonoBehaviour
         timerToFire = 0;
         //and you cannot fire (clamp on the maximum rate of fire)
         ifCanShoot = false;
-        
+        // Enable line (show line as Coroutine)
+        StartCoroutine(ShowLine(start, end, lineDelay));
+    }
 
+    IEnumerator ShowLine(Vector3 start, Vector3 end, float lineDelay)
+    {
+        // Update and Show the line
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
+        lineRenderer.enabled = true;
 
+        // Wait a few seconds
+        yield return new WaitForSeconds(lineDelay);
+
+        // Hide the line
+        lineRenderer.enabled = false;
     }
 
     void FixedUpdate()
@@ -82,17 +102,14 @@ public class SebWeapon : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 Fire();
-                GetComponent<LineRenderer>().SetPosition(0, shootPoint.position);
+                
                 //if ((hitPoint + shootPoint.position).magnitude >= range)
                 //{
                 //    GetComponent<LineRenderer>().SetPosition(1, shootPoint.position + (shootPoint.forward * range));
                 //}
                 //else
                 //{
-                GetComponent<LineRenderer>().SetPosition(1, shootPoint.position + shootPoint.forward * range);
                 //}
-
-                GetComponent<LineRenderer>().enabled = true;
 
             }
         }
