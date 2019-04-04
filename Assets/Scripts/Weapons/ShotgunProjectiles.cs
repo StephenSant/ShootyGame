@@ -21,12 +21,6 @@ public class ShotgunProjectiles : MonoBehaviour
         }
     }
 
-    public void HitEnemy()
-    {
-        
-        //RaycastHit hit;
-        //if(Physics.Raycast())
-    }
 
     private void OnTriggerEnter(Collider other)
     {
