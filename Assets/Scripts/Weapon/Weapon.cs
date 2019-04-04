@@ -17,12 +17,12 @@ public abstract class Weapon : MonoBehaviour
 
     private float shootTimer = 0;
 
-    protected virtual void Start()
+    public virtual void Start()
     {
         curAmmo = maxAmmo;
     }
 
-    protected virtual void Update()
+    public virtual void Update()
     {
         //Debug.DrawRay(muzzle.position, muzzle.forward * range, Color.red);
         shootTimer += Time.deltaTime;
@@ -35,6 +35,8 @@ public abstract class Weapon : MonoBehaviour
         {
             canShoot = false;
         }
+
+        UI.instance.ammoText.text = ""+curAmmo;
     }
 
     public virtual void PrimaryFire() { }

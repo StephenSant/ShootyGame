@@ -7,13 +7,13 @@ public class PlayerHealth : Health
 {
 
     // Use this for initialization
-    protected override void Start()
+    public override void Start()
     {
         isDead = false;
         curHealth = maxHealth;
     }
 
-    protected void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         //current health is minused by damage
         curHealth -= damage;
@@ -26,7 +26,7 @@ public class PlayerHealth : Health
             Dead();
         }
     }
-    protected void Dead()
+    void Dead()
     {
         //the player is dead
         isDead = true;

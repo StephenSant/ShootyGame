@@ -25,9 +25,9 @@ public class Boomerang : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.transform.CompareTag("Player"))
+        else if (collision.transform.GetComponent<Health>()!=null)
         {
-            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
         if (isReturning)
         {

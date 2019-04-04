@@ -6,10 +6,10 @@ public class PlayerLook : MonoBehaviour//Stephen
 {
     public Camera firstPersonCamera;
 
-    public float sensitivityX = 0.025F;
-    public float sensitivityY = 0.025F;
-    public float minimumY = -1.5F;
-    public float maximumY = 1.5F;
+    public float sensitivityX = .75f;
+    public float sensitivityY = .75f;
+    public float minimumY = -75;
+    public float maximumY = 75;
 
     float rotationY, rotationX;
 
