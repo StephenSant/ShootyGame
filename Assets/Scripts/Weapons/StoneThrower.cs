@@ -10,7 +10,7 @@ public class StoneThrower : Weapon
     public GameObject wall;
     public GameObject projectile;
     public Transform muzzle;
-    public LineRenderer line;
+
     public GameObject particleHit;
     [Header("Spread")]
     public int pelletsCount = 8;
@@ -28,9 +28,13 @@ public class StoneThrower : Weapon
     {
         base.Start(); // Set the current ammo!
         playerCamera = GetComponentInParent<Camera>();
-        line = GetComponentInChildren<LineRenderer>();
+        rateOfFire = 1.2f;
+        
     }
-    
+    public override void Update()
+    {
+        base.Update();
+    }
     List<Ray> rays = new List<Ray>();
     List<Vector3> hits = new List<Vector3>();
     private void OnDrawGizmos()
@@ -50,7 +54,7 @@ public class StoneThrower : Weapon
 
     public override void PrimaryFire()
     {
-        if (canShoot)
+        if (canShoot == true && isReloading == false)
         {
 
 
@@ -90,8 +94,8 @@ public class StoneThrower : Weapon
                     //PlayerHealth health = hit.collider.GetComponent<PlayerHealth>();
                     //health.TakeDamage(damage);
                     hit.collider.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
-                    Instantiate(particleHit, hit.point, spreadRotation);
-                    Destroy(particleHit, 1.1f);
+                    GameObject particleClone = Instantiate(particleHit, hit.point, spreadRotation);
+                    Destroy(particleClone, 1.1f);
                     hitSomething = true;
                     hits.Add(hit.point);
                 }
@@ -100,7 +104,7 @@ public class StoneThrower : Weapon
 
             }
             curAmmo--;
-
+            shootTimer = 0;
             canShoot = false;
 
         }
@@ -108,26 +112,35 @@ public class StoneThrower : Weapon
 
     public override void SecondaryFire()
     {
-        if (canShoot && curAmmo >= maxAmmo / 2)
+        if(curAmmo >= maxAmmo / 2)
         {
-            Ray camRay = playerCamera.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit hit;
-            if (Physics.Raycast(camRay, out hit, spawnWallRange))
+            if (canShoot = true && isReloading == false)
             {
+                Ray camRay = playerCamera.ScreenPointToRay(Input.mousePosition);
 
-                Transform target = GameObject.Find("Player").GetComponent<Transform>();
+                RaycastHit hit;
+                if (Physics.Raycast(camRay, out hit, spawnWallRange))
+                {
+
+                    Transform target = GameObject.Find("Player").GetComponent<Transform>();
 
 
-                GameObject spawnWall = Instantiate(wall, hit.point + new Vector3(0, 0, 0), Quaternion.LookRotation(-target.transform.right)) as GameObject;
-                curAmmo -= 12;
+                    GameObject spawnWall = Instantiate(wall, hit.point + new Vector3(0, 0, 0), Quaternion.LookRotation(-target.transform.right)) as GameObject;
+                    curAmmo -= 12;
 
+                }
             }
         }
 
 
+
     }
-  
+    public override void Reload()
+    {
+        StartCoroutine(ReloadSequence(3.2f));
+        
+    }
+
     //IEnumerator ShotLine(Ray shotgunRay, float lineDelay)
     //{
     //    //Run logic before

@@ -59,6 +59,9 @@ public class PlayerManager : MonoBehaviour//Stephen
         if (Input.GetKeyDown(KeyCode.R))
         {
             weapon.Reload();
+            
+            weapon.canShoot = false;
+            
         }
     }
 }

@@ -25,6 +25,8 @@ public class UI : MonoBehaviour
 
         GameObject.Find("HealthBar").GetComponent<Slider>();
         GameObject.Find("AmmoText").GetComponent<Text>();
+
+
     }
 
 
