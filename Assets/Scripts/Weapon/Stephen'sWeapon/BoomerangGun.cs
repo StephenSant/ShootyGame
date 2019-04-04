@@ -6,6 +6,13 @@ public class BoomerangGun : Weapon
 {
     public GameObject boomerangPrefab;
     public GameObject boomerang;
+    public int boomerangAmount = 1;
+
+    public override void Start()
+    {
+        maxAmmo = boomerangAmount;
+        curAmmo = maxAmmo;
+    }
 
     public override void PrimaryFire()
     {
@@ -18,12 +25,18 @@ public class BoomerangGun : Weapon
     {
         boomerang.GetComponent<Boomerang>().isReturning = true;
     }
-    private void Update()
+    public override void Update()
     {
         if (boomerang != null)
         {
             boomerang.GetComponent<Boomerang>().returnPoint = transform.parent.parent.parent.transform;
+            curAmmo = 0;
         }
+        else
+        {
+            curAmmo = 1;
+        }
+        UI.instance.ammoText.text = "" + curAmmo;
 
     }
 

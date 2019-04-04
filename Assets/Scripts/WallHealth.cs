@@ -6,14 +6,14 @@ public class WallHealth : Health
 {
 
     // Use this for initialization
-    protected override void Start()
+    public override void Start()
     {
         maxHealth = 200;
         curHealth = maxHealth;
     }
 
     // Update is called once per frame
-    protected override void Update()
+    public override void Update()
     {
         if (curHealth >= maxHealth)
         {

@@ -26,6 +26,9 @@ public class PlayerManager : MonoBehaviour//Stephen
     // Update is called once per frame
     void Update()
     {
+
+        UI.instance.healthBar.value = playerHealth.curHealth;
+
         if (weapon != null)
         {
             if (Input.GetMouseButtonDown(0))

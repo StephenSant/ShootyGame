@@ -7,6 +7,7 @@ public class UI : MonoBehaviour
 {
     public static UI instance = null;
 
+    [Header("References")]
     public Slider healthBar;
     public Text ammoText;
 
@@ -25,5 +26,6 @@ public class UI : MonoBehaviour
         GameObject.Find("HealthBar").GetComponent<Slider>();
         GameObject.Find("AmmoText").GetComponent<Text>();
     }
+
 
 }

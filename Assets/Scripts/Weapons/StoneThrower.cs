@@ -23,7 +23,7 @@ public class StoneThrower : Weapon
     public Camera playerCamera;
     private float range = 100f;
     //public Transform target;
-    protected override void Start()
+    public override void Start()
     {
         base.Start(); // Set the current ammo!
         playerCamera = GetComponentInParent<Camera>();

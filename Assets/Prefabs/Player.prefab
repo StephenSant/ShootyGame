@@ -251,11 +251,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1402894433387586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9615d5368ab6c72459b36a3a4d6b2e29, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a3953e1b753ae440abc753385690bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 0
+  isDead: 0
 --- !u!136 &136543142380542058
 CapsuleCollider:
   m_ObjectHideFlags: 1
