@@ -16,10 +16,11 @@ public class SebWeapon : MonoBehaviour
     private float timerToFire;
     private bool ifCanShoot;
     private LineRenderer lineRenderer;
+    private Vector3 hitPoint;
 
     private void Start()
     {
-        //This will be fucky down the line because of respawning, but for now, dw
+
         currentAmmo = ammo;
     }
     void LineRenderer()
@@ -43,19 +44,19 @@ public class SebWeapon : MonoBehaviour
         Physics.Raycast(shotRay, out hit, range);
         Debug.Log(hit.point.ToString());
         Debug.DrawRay(shootPoint.position, shootPoint.forward * range, Color.magenta);
-        if (Physics.Raycast(shotRay, out hit, range))
+        if (Physics.Raycast(shotRay, out hit, range))   
         {
-            //Debugging purposes, replace with health once health script is in
-            //Collider target = hit.collider.GetComponent<Collider>();
-            //Debug.Log(target.gameObject.name.ToString());
+            hitPoint = hit.point;
+            hit.collider.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
+
         //takes 1 bullet away from the current ammo pool
         currentAmmo--;
         //resets the fire rate timer to 0
         timerToFire = 0;
         //and you cannot fire (clamp on the maximum rate of fire)
         ifCanShoot = false;
-
+        
 
 
     }
@@ -81,9 +82,16 @@ public class SebWeapon : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 Fire();
-
                 GetComponent<LineRenderer>().SetPosition(0, shootPoint.position);
-                GetComponent<LineRenderer>().SetPosition(1, shootPoint.position + (shootPoint.forward * range));
+                //if ((hitPoint + shootPoint.position).magnitude >= range)
+                //{
+                //    GetComponent<LineRenderer>().SetPosition(1, shootPoint.position + (shootPoint.forward * range));
+                //}
+                //else
+                //{
+                GetComponent<LineRenderer>().SetPosition(1, shootPoint.position + shootPoint.forward * range);
+                //}
+
                 GetComponent<LineRenderer>().enabled = true;
 
             }
