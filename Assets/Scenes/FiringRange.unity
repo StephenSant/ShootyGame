@@ -162,11 +162,6 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
-  showUI: 1
-  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
-    type: 2}
-  healthBarParent: {fileID: 259751587}
-  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &86215275
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -259,8 +254,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.326, y: -0.366, z: 0.13000011}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 563632458}
+  m_Children: []
   m_Father: {fileID: 1000765407}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -313,11 +307,6 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
-  showUI: 1
-  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
-    type: 2}
-  healthBarParent: {fileID: 259751587}
-  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &161946659
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -502,6 +491,7 @@ GameObject:
   - component: {fileID: 275405628}
   - component: {fileID: 275405625}
   - component: {fileID: 275405624}
+  - component: {fileID: 275405626}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -520,11 +510,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81abd04db88a454fa4785bfb2acbbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  curHealth: 0
   movement: {fileID: 275405628}
   look: {fileID: 275405625}
-  weapon: {fileID: 563632460}
+  weaponPos: {fileID: 102852664}
+  playerHealth: {fileID: 275405626}
 --- !u!114 &275405625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +530,20 @@ MonoBehaviour:
   sensitivityY: 0.025
   minimumY: -1.5
   maximumY: 1.5
+--- !u!114 &275405626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 275405623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3953e1b753ae440abc753385690bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  curHealth: 0
+  isDead: 0
 --- !u!114 &275405628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,11 +872,6 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
-  showUI: 1
-  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
-    type: 2}
-  healthBarParent: {fileID: 259751587}
-  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &471873563
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -942,181 +940,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &563632457
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 563632458}
-  - component: {fileID: 563632459}
-  - component: {fileID: 563632460}
-  - component: {fileID: 563632461}
-  m_Layer: 0
-  m_Name: Gun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &563632458
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 563632457}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1923906895}
-  m_Father: {fileID: 102852664}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &563632459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 563632457}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a8c7490aedda440b0771511a14f1b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 1.5
-  range: 10
-  bulletPrefab: {fileID: 1985373751763038, guid: e3613510816ea4f48bafe0385d2ed9c3,
-    type: 2}
-  muzzle: {fileID: 1501134562}
-  timetoFire: 0
-  shotDelay: 0.1
-  magCap: 25
-  currentAmmo: 0
-  reloading: 0
-  firedShots: 0
---- !u!114 &563632460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 563632457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d25456f89285fc43ad27010cd38d9f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 1501134562}
-  damage: 8
-  curAmmo: 0
-  maxAmmo: 20
-  rateOfFire: 1.2
-  reloadDelay: 1
-  canShoot: 0
-  wall: {fileID: 1624840532624724, guid: 0e2ba975d29429f4096b416f74ac592f, type: 2}
-  projectile: {fileID: 1941460784524692, guid: f141c37aad3f88f4898435850b4ab563, type: 2}
-  muzzle: {fileID: 1501134562}
-  line: {fileID: 563632461}
-  particleHit: {fileID: 1054902679308156, guid: 58c762153cfda0f46951498da7389ae2,
-    type: 2}
-  pelletsCount: 8
-  pelletSpeed: 500
-  pelletSpread: 1
-  spawnWallRange: 20
-  playerCamera: {fileID: 0}
---- !u!120 &563632461
-LineRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 563632457}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
-  m_Parameters:
-    serializedVersion: 2
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.19841194
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    generateLightingData: 0
-  m_UseWorldSpace: 1
-  m_Loop: 0
 --- !u!1 &741637718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,48 +1106,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 764144086}
   m_CullTransparentMesh: 0
---- !u!1001 &801180662
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 563632458}
-    m_Modifications:
-    - target: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a4e476a037022df448ead5d0ceea7d06, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &849518052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,11 +1544,6 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
-  showUI: 1
-  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
-    type: 2}
-  healthBarParent: {fileID: 259751587}
-  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &1301792829
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1885,11 +1661,6 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
-  showUI: 1
-  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
-    type: 2}
-  healthBarParent: {fileID: 259751587}
-  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &1395065456
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2020,34 +1791,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1501134561
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1501134562}
-  m_Layer: 0
-  m_Name: Muzzle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1501134562
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1501134561}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.127, z: 0.723}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1923906895}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1583387155 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224596598814680832, guid: a38d376b2290cf74cbd2a7e3ae59e5af,
@@ -2102,11 +1845,6 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
-  showUI: 1
-  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
-    type: 2}
-  healthBarParent: {fileID: 259751587}
-  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &1602984048
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2309,11 +2047,6 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
-  showUI: 1
-  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
-    type: 2}
-  healthBarParent: {fileID: 259751587}
-  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &1853671843
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2382,11 +2115,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!4 &1923906895 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06,
-    type: 2}
-  m_PrefabInternal: {fileID: 801180662}
 --- !u!1 &1979864009
 GameObject:
   m_ObjectHideFlags: 0

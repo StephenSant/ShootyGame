@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class WallHealth : Health
 {
-    public float curHealth;
-    public float maxHealth = 200f;
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    protected override void Start()
     {
+        maxHealth = 200;
         curHealth = maxHealth;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    protected override void Update()
     {
-		if(curHealth >= maxHealth)
+        if (curHealth >= maxHealth)
         {
             curHealth = maxHealth;
         }
@@ -23,12 +23,12 @@ public class Health : MonoBehaviour
         {
             Dead();
         }
-	}
-    public void TakeDamage(float damage)
+    }
+    public override void TakeDamage(int damage)
     {
         curHealth -= damage;
     }
-    void Dead()
+    protected void Dead()
     {
         Destroy(gameObject);
     }

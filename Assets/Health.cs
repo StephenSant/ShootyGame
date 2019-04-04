@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public abstract class Health : MonoBehaviour
 {
+
     public int maxHealth = 100;
     public int curHealth;
-
-	// Use this for initialization
-	void Start ()
+    public bool isDead;
+    // Use this for initialization
+    protected virtual void Start ()
     {
         curHealth = maxHealth;
 	}
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         curHealth -= damage;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (curHealth > maxHealth)
         {
@@ -26,11 +27,15 @@ public class Health : MonoBehaviour
         }
         if (curHealth <= 0)
         {
+            curHealth = 0;
             Die();
         }
     }
-    void Die()
+    protected virtual void Die()
     {
+        //the player is dead
+        isDead = true;
+        //Destroy player
         Destroy(gameObject);
     }
 }

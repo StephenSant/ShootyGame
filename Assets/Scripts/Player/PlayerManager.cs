@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour//Stephen
     public PlayerMovement movement;
     public PlayerLook look;
     public Transform weaponPos;
-    public Health playerHealth;
+    public PlayerHealth playerHealth;
 
     GameObject gun; //weapon held as a gameobject
     Weapon weapon; //will grab the weapon type script from the gun
@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour//Stephen
     {
         movement = GetComponent<PlayerMovement>();
         look = GetComponent<PlayerLook>();
-        playerHealth = GetComponent<Health>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -43,11 +43,15 @@ public class PlayerManager : MonoBehaviour//Stephen
             gun = (GameObject)Instantiate(Resources.Load("Boomerang Gun"), weaponPos);
             weapon = gun.GetComponent<Weapon>();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && weapon == null)
+        {
+            gun = (GameObject)Instantiate(Resources.Load("StoneThrower"), weaponPos);
+            weapon = gun.GetComponent<Weapon>();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             weapon = null;
             Destroy(gun);
-            Instantiate(Resources.Load("BoomerangGun"));
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
