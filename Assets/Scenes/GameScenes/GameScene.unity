@@ -777,6 +777,22 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    - target: {fileID: 114209250625091774, guid: 66f111e01a70c6748be9ef7b000113cb,
+        type: 2}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209250625091774, guid: 66f111e01a70c6748be9ef7b000113cb,
+        type: 2}
+      propertyPath: jumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402894433387586, guid: 66f111e01a70c6748be9ef7b000113cb, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 54454119123774108, guid: 66f111e01a70c6748be9ef7b000113cb, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 66f111e01a70c6748be9ef7b000113cb, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2021208788
