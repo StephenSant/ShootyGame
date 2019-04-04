@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviour
+public class PlayerLook : MonoBehaviour//Stephen
 {
     public Camera firstPersonCamera;
 
@@ -20,6 +20,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Start()
     {
+
         HideCursor(true);
     }
 

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour //Stephen
 {
 
     [Header("Movement Values")]
-    public float moveSpeed = 7.5f;
-    public float jumpHeight = 20f;
+    public float moveSpeed = 10f;
+    public float jumpHeight = 5f;
 
     [Header("Physics")]
     public float gravity = 10f;
@@ -64,15 +64,8 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(movement * Time.deltaTime);
     }
 
-    void Shooting()
-    {
-
-    }
-
     void Update()
     {
         Movement();
-        Shooting();
-
     }
 }
