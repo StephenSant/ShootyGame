@@ -29,18 +29,15 @@ public class ShotgunProjectiles : MonoBehaviour
         //RaycastHit hit;
         //if(Physics.Raycast())
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealth pHealth = other.gameObject.GetComponent<PlayerHealth>();
-            pHealth.SendMessage("TakeDamage", damage);
             Destroy(gameObject);
         }
         if(other.gameObject.tag == "StoneThrowerWall")
         {
-            Health wallHealth = other.gameObject.GetComponent<Health>();
-            wallHealth.SendMessage("TakeDamage", damage);
             Destroy(gameObject);
         }
     }

@@ -42,5 +42,9 @@ public class PlayerManager : MonoBehaviour//Stephen
         {
             Instantiate(Resources.Load("BoomerangGun"));
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            weapon.Reload();
+        }
     }
 }

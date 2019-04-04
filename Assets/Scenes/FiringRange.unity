@@ -126,7 +126,6 @@ GameObject:
   - component: {fileID: 86215275}
   - component: {fileID: 86215274}
   - component: {fileID: 86215273}
-  - component: {fileID: 86215279}
   m_Layer: 0
   m_Name: FiringRangeDummy (1)
   m_TagString: Player
@@ -163,6 +162,11 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
+  showUI: 1
+  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
+    type: 2}
+  healthBarParent: {fileID: 259751587}
+  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &86215275
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -231,19 +235,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &86215279
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 86215272}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &102852663
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +277,6 @@ GameObject:
   - component: {fileID: 161946659}
   - component: {fileID: 161946658}
   - component: {fileID: 161946657}
-  - component: {fileID: 161946663}
   m_Layer: 0
   m_Name: FiringRangeDummy (6)
   m_TagString: Player
@@ -323,6 +313,11 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
+  showUI: 1
+  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
+    type: 2}
+  healthBarParent: {fileID: 259751587}
+  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &161946659
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -391,19 +386,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &161946663
-CapsuleCollider:
+--- !u!1 &259751586
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 161946656}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259751587}
+  m_Layer: 5
+  m_Name: HealthBars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &259751587
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 259751586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 741637722}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &263460547
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +524,7 @@ MonoBehaviour:
   curHealth: 0
   movement: {fileID: 275405628}
   look: {fileID: 275405625}
+  weapon: {fileID: 563632460}
 --- !u!114 &275405625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,6 +645,81 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &285040046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 285040048}
+  - component: {fileID: 285040047}
+  m_Layer: 0
+  m_Name: Circle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &285040047
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 285040046}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 00ae4da957e31ae40b2d8a644ec4c03b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &285040048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 285040046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.7554536, y: 0.25535956, z: 4.137788}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &407666334
 Prefab:
   m_ObjectHideFlags: 0
@@ -742,7 +833,6 @@ GameObject:
   - component: {fileID: 471873563}
   - component: {fileID: 471873562}
   - component: {fileID: 471873561}
-  - component: {fileID: 471873567}
   m_Layer: 0
   m_Name: FiringRangeDummy
   m_TagString: Player
@@ -779,6 +869,11 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
+  showUI: 1
+  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
+    type: 2}
+  healthBarParent: {fileID: 259751587}
+  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &471873563
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -847,19 +942,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &471873567
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 471873560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &563632457
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,22 +1007,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d25456f89285fc43ad27010cd38d9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint: {fileID: 1501134562}
+  damage: 8
+  curAmmo: 0
+  maxAmmo: 20
+  rateOfFire: 1.2
+  reloadDelay: 1
+  canShoot: 0
   wall: {fileID: 1624840532624724, guid: 0e2ba975d29429f4096b416f74ac592f, type: 2}
   projectile: {fileID: 1941460784524692, guid: f141c37aad3f88f4898435850b4ab563, type: 2}
   muzzle: {fileID: 1501134562}
   line: {fileID: 563632461}
   particleHit: {fileID: 1054902679308156, guid: 58c762153cfda0f46951498da7389ae2,
     type: 2}
-  curAmmo: 0
-  maxAmmo: 20
-  isReloading: 0
   pelletsCount: 8
   pelletSpeed: 500
   pelletSpread: 1
-  rateOfFire: 1.2
   spawnWallRange: 20
   playerCamera: {fileID: 0}
-  damage: 8
 --- !u!120 &563632461
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1120,6 +1204,8 @@ RectTransform:
   m_Children:
   - {fileID: 849518053}
   - {fileID: 1583387155}
+  - {fileID: 764144087}
+  - {fileID: 259751587}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1128,6 +1214,75 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &764144086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764144087}
+  - component: {fileID: 764144089}
+  - component: {fileID: 764144088}
+  m_Layer: 5
+  m_Name: Crosshair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &764144087
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 764144086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.23217, y: 0.23217, z: 0.23217}
+  m_Children: []
+  m_Father: {fileID: 741637722}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &764144088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 764144086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &764144089
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 764144086}
+  m_CullTransparentMesh: 0
 --- !u!1001 &801180662
 Prefab:
   m_ObjectHideFlags: 0
@@ -1331,7 +1486,7 @@ GameObject:
   - component: {fileID: 1000765408}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1572,7 +1727,6 @@ GameObject:
   - component: {fileID: 1301792829}
   - component: {fileID: 1301792828}
   - component: {fileID: 1301792827}
-  - component: {fileID: 1301792833}
   m_Layer: 0
   m_Name: FiringRangeDummy (4)
   m_TagString: Player
@@ -1609,6 +1763,11 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
+  showUI: 1
+  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
+    type: 2}
+  healthBarParent: {fileID: 259751587}
+  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &1301792829
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1677,19 +1836,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &1301792833
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1301792826}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1395065453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,7 +1849,6 @@ GameObject:
   - component: {fileID: 1395065456}
   - component: {fileID: 1395065455}
   - component: {fileID: 1395065454}
-  - component: {fileID: 1395065460}
   m_Layer: 0
   m_Name: FiringRangeDummy (5)
   m_TagString: Player
@@ -1740,6 +1885,11 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
+  showUI: 1
+  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
+    type: 2}
+  healthBarParent: {fileID: 259751587}
+  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &1395065456
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1808,19 +1958,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &1395065460
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1395065453}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1429185051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,7 +2066,6 @@ GameObject:
   - component: {fileID: 1602984048}
   - component: {fileID: 1602984047}
   - component: {fileID: 1602984046}
-  - component: {fileID: 1602984052}
   m_Layer: 0
   m_Name: FiringRangeDummy (3)
   m_TagString: Player
@@ -1966,6 +2102,11 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
+  showUI: 1
+  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
+    type: 2}
+  healthBarParent: {fileID: 259751587}
+  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &1602984048
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2034,19 +2175,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &1602984052
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1602984045}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1692083601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,7 +2273,6 @@ GameObject:
   - component: {fileID: 1853671843}
   - component: {fileID: 1853671842}
   - component: {fileID: 1853671841}
-  - component: {fileID: 1853671847}
   m_Layer: 0
   m_Name: FiringRangeDummy (2)
   m_TagString: Player
@@ -2182,6 +2309,11 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   isDead: 0
+  showUI: 1
+  healthBarPrefab: {fileID: 1619930550932668, guid: 4fd674ca3b623484dbf699ad89d7f836,
+    type: 2}
+  healthBarParent: {fileID: 259751587}
+  healthBarOffset: {x: 0, y: 2, z: 0}
 --- !u!136 &1853671843
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2250,19 +2382,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &1853671847
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1853671840}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1923906895 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 453068, guid: a4e476a037022df448ead5d0ceea7d06,

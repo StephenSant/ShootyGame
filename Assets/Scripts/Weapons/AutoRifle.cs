@@ -30,14 +30,4 @@ public class AutoRifle : MonoBehaviour
             firedShots += 1;
         }
 	}
-    //public void Shoot()
-    //{
-    //    GameObject clone = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
-    //    yield return WaitForSeconds(fireRate);
-    //}
-
-    //IEnumerator RateOfFire()
-    //{
-
-    //}
 }
