@@ -8,12 +8,9 @@ public abstract class Weapon : MonoBehaviour
     public int damage;
     [Header("Shooting")]
     public int curAmmo;
-
-
     public int maxAmmo;
     public float rateOfFire;
     public float reloadDelay;
-
     public bool canShoot = true;
 
     protected bool isReloading = false;
