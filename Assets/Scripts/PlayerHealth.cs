@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealth : Health
 {
+    PlayerManager manager;
+
+    private void Awake()
+    {
+        manager = GetComponent<PlayerManager>();
+    }
 
     // Use this for initialization
     public override void Start()
@@ -23,15 +28,10 @@ public class PlayerHealth : Health
         {
             curHealth = 0;
             //you are dead, no big suprise
-            Dead();
+            if (!isDead)
+            {
+                manager.Dead();
+            }
         }
-    }
-    void Dead()
-    {
-        //the player is dead
-        isDead = true;
-        //Destroy player
-        Destroy(gameObject);
-
     }
 }

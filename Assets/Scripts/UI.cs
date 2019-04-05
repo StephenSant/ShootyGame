@@ -10,6 +10,7 @@ public class UI : MonoBehaviour
     [Header("References")]
     public Slider healthBar;
     public Text ammoText;
+    public GameObject hudPanel;
 
     void Awake()
     {
@@ -22,10 +23,6 @@ public class UI : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        GameObject.Find("HealthBar").GetComponent<Slider>();
-        GameObject.Find("AmmoText").GetComponent<Text>();
-
 
     }
 
