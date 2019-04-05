@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public static UI instance = null;
+    public static UIManager instance = null;
 
     [Header("References")]
     public Slider healthBar;

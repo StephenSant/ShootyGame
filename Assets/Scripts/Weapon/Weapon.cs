@@ -40,7 +40,7 @@ public abstract class Weapon : MonoBehaviour
             canShoot = false;
         }
 
-        UI.instance.ammoText.text = ""+curAmmo+"/"+maxAmmo;
+        UIManager.instance.ammoText.text = ""+curAmmo+"/"+maxAmmo;
     }
 
     public virtual void PrimaryFire() { }

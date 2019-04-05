@@ -39,7 +39,7 @@ public class BoomerangGun : Weapon//stephen
         {
             curAmmo = 1;
         }
-        UI.instance.ammoText.text = "" + curAmmo;
+        UIManager.instance.ammoText.text = "" + curAmmo;
 
     }
 
