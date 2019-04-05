@@ -5,12 +5,15 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public Transform firePoint;
-    public int damage = 8;
+    public int damage;
     [Header("Shooting")]
     public int curAmmo;
-    public int maxAmmo = 20;
+
+
+    public int maxAmmo;
     public float rateOfFire;
-    public float reloadDelay = 1f;
+    public float reloadDelay;
+
     public bool canShoot = true;
 
     protected bool isReloading = false;
@@ -24,19 +27,23 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Update()
     {
-        //Debug.DrawRay(muzzle.position, muzzle.forward * range, Color.red);
         shootTimer += Time.deltaTime;
+        Debug.Log(shootTimer+" "+rateOfFire);
         if (shootTimer >= rateOfFire)
         {
             canShoot = true;
         }
-
-        if (curAmmo == 0)
+        else
         {
             canShoot = false;
         }
+        if (curAmmo <= 0)
+        {
+            curAmmo = 0;
+            canShoot = false;
+        }
 
-        UI.instance.ammoText.text = ""+curAmmo;
+        UI.instance.ammoText.text = ""+curAmmo+"/"+maxAmmo;
     }
 
     public virtual void PrimaryFire() { }

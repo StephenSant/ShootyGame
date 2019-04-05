@@ -31,11 +31,11 @@ public class PlayerManager : MonoBehaviour//Stephen
 
         if (weapon != null)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 weapon.PrimaryFire();
             }
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(1))
             {
                 weapon.SecondaryFire();
             }
@@ -51,12 +51,18 @@ public class PlayerManager : MonoBehaviour//Stephen
             gun = (GameObject)Instantiate(Resources.Load("StoneThrower"), weaponPos);
             weapon = gun.GetComponent<Weapon>();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && weapon == null)
+        {
+            gun = (GameObject)Instantiate(Resources.Load("SMG"), weaponPos);
+            weapon = gun.GetComponent<Weapon>();
+        }
+        
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             weapon = null;
             Destroy(gun);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && weapon != null)
         {
             weapon.Reload();
             

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoomerangGun : Weapon
+public class BoomerangGun : Weapon//stephen
 {
     public GameObject boomerangPrefab;
     public GameObject boomerang;
@@ -23,7 +23,10 @@ public class BoomerangGun : Weapon
     }
     public override void SecondaryFire()
     {
-        boomerang.GetComponent<Boomerang>().isReturning = true;
+        if (boomerang != null)
+        {
+            boomerang.GetComponent<Boomerang>().isReturning = true;
+        }
     }
     public override void Update()
     {

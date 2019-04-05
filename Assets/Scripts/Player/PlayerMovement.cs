@@ -67,6 +67,5 @@ public class PlayerMovement : MonoBehaviour //Stephen
     void Update()
     {
         Movement();
-
     }
 }

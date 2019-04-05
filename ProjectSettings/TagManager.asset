@@ -25,10 +25,14 @@ TagManager:
   - 
   - Minimap
   - Locked
+  - Bullet
+  - MapLayer
   - 
   - 
   - 
   - 
+  - 
+  - Locked
   - 
   - 
   - 
