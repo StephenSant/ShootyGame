@@ -35,7 +35,5 @@ public abstract class Health : MonoBehaviour
     {
         //the player is dead
         isDead = true;
-        //Destroy player
-        Destroy(gameObject);
     }
 }

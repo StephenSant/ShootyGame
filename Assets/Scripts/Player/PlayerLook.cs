@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour//Stephen
 {
-    public Camera firstPersonCamera;
-
+    PlayerManager manager;
     public float sensitivityX = .75f;
     public float sensitivityY = .75f;
     public float minimumY = -75;
@@ -15,7 +14,7 @@ public class PlayerLook : MonoBehaviour//Stephen
 
     private void Awake()
     {
-        firstPersonCamera = GetComponentInChildren<Camera>();
+        manager = GetComponent<PlayerManager>();
     }
 
     private void Start()
@@ -30,7 +29,7 @@ public class PlayerLook : MonoBehaviour//Stephen
         //looks up and down
         rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);//CLAMP!
-        firstPersonCamera.transform.localRotation = Quaternion.Euler(-rotationY,0, 0);
+        manager.firstPersonCamera.transform.localRotation = Quaternion.Euler(-rotationY,0, 0);
 
         //looks left and right
         rotationX += Input.GetAxis("Mouse X") * sensitivityX;

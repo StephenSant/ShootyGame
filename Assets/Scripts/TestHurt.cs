@@ -6,6 +6,6 @@ public class TestHurt : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<Health>().TakeDamage(10);
+        other.GetComponent<Health>().TakeDamage(100);
     }
 }
