@@ -26,21 +26,25 @@ public abstract class Weapon : MonoBehaviour
     {
         shootTimer += Time.deltaTime;
         Debug.Log(shootTimer+" "+rateOfFire);
-        if (shootTimer >= rateOfFire)
-        {
-            canShoot = true;
-        }
-        else
+        if (isReloading)
         {
             canShoot = false;
         }
-        if (curAmmo <= 0)
+        else if (curAmmo <= 0)
         {
             curAmmo = 0;
             canShoot = false;
         }
+        else if (!(shootTimer >= rateOfFire))
+        {
+            canShoot = false;
+        }
+        else
+        {
+            canShoot = true;
+        }
 
-        UIManager.instance.ammoText.text = ""+curAmmo+"/"+maxAmmo;
+        UIManager.instance.ammoText.text = ""+curAmmo+" / "+maxAmmo;
     }
 
     public virtual void PrimaryFire() { }
@@ -49,8 +53,7 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Reload()
     {
         StartCoroutine(ReloadSequence(reloadDelay));
-        
-        canShoot = false;
+
     }
 
     public IEnumerator ReloadSequence(float delay)
@@ -58,8 +61,6 @@ public abstract class Weapon : MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(delay);
         curAmmo = maxAmmo;
-
         isReloading = false;
-        canShoot = true;
     }
 }

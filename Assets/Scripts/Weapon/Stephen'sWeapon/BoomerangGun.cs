@@ -7,7 +7,12 @@ public class BoomerangGun : Weapon//stephen
     public GameObject boomerangPrefab;
     public GameObject boomerang;
     public int boomerangAmount = 1;
-
+    public GameObject particleParent; 
+    ParticleSystem[] particles = new ParticleSystem[3];
+    public void Awake()
+    {
+        particles = GetComponentsInChildren<ParticleSystem>();
+    }
     public override void Start()
     {
         maxAmmo = boomerangAmount;
@@ -18,6 +23,10 @@ public class BoomerangGun : Weapon//stephen
     {
         if (boomerang == null)
         {
+            for (int i = 0; i < 2; i++)
+            {
+                particles[i].Play();
+            }
             boomerang = Instantiate(boomerangPrefab, firePoint.position, firePoint.rotation);
         }
     }
@@ -39,7 +48,7 @@ public class BoomerangGun : Weapon//stephen
         {
             curAmmo = 1;
         }
-        UIManager.instance.ammoText.text = "" + curAmmo;
+        UIManager.instance.ammoText.text = "" + curAmmo+" / "+ maxAmmo;
 
     }
 

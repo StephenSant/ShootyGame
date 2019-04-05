@@ -142,7 +142,7 @@ MonoBehaviour:
   damage: 34
   curAmmo: 0
   maxAmmo: 20
-  rateOfFire: 0.5
+  rateOfFire: 0.1
   reloadDelay: 1
   canShoot: 1
   shootTimer: 0

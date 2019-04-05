@@ -27,12 +27,6 @@ public class SebWeapon : Weapon
         curAmmo = maxAmmo;
     }
 
-    public override void Reload()
-    {
-        //current ammo in magazine is now equal to the amount in magazine cap
-        curAmmo = maxAmmo;
-    }
-
     public override void PrimaryFire()
     {
         if (canShoot)
