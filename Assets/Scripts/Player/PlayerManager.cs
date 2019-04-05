@@ -67,6 +67,9 @@ public class PlayerManager : MonoBehaviour//Stephen
         if (Input.GetKeyDown(KeyCode.R) && weapon != null)
         {
             weapon.Reload();
+            
+            weapon.canShoot = false;
+            
         }
     }
     public void Dead()

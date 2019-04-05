@@ -9,8 +9,8 @@ public abstract class Weapon : MonoBehaviour
     [Header("Shooting")]
     public int curAmmo;
     public int maxAmmo;
-    public float rateOfFire = 100f;
-    public float reloadDelay = .5f;
+    public float rateOfFire;
+    public float reloadDelay;
     public bool canShoot = true;
 
     protected bool isReloading = false;
@@ -49,12 +49,13 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Reload()
     {
         StartCoroutine(ReloadSequence(reloadDelay));
+        
+        canShoot = false;
     }
 
-    IEnumerator ReloadSequence(float delay)
+    public IEnumerator ReloadSequence(float delay)
     {
         isReloading = true;
-
         yield return new WaitForSeconds(delay);
         curAmmo = maxAmmo;
 
