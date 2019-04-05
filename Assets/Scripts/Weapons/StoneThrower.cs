@@ -123,8 +123,6 @@ public class StoneThrower : Weapon
                 {
 
                     Transform target = GameObject.Find("Player").GetComponent<Transform>();
-
-
                     GameObject spawnWall = Instantiate(wall, hit.point + new Vector3(0, 0, 0), Quaternion.LookRotation(-target.transform.right)) as GameObject;
                     curAmmo -= 12;
 
