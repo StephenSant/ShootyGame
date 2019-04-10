@@ -18,13 +18,14 @@ TagManager:
   - 
   - PostProcessing
   - 
+  - walltest
+  - 
   - 
   - 
   - Minimap
   - Locked
   - Bullet
   - MapLayer
-  - walltest
   - 
   - 
   - 
