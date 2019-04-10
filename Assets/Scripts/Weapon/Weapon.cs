@@ -12,6 +12,7 @@ public abstract class Weapon : MonoBehaviour
     public float rateOfFire;
     public float reloadDelay;
     public bool canShoot = true;
+    public float range;
 
     protected bool isReloading = false;
 
@@ -25,7 +26,10 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Update()
     {
         shootTimer += Time.deltaTime;
-        Debug.Log(shootTimer+" "+rateOfFire);
+        if (curAmmo == 0)
+        {
+            Reload();
+        }
         if (isReloading)
         {
             canShoot = false;
@@ -52,7 +56,8 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Reload()
     {
-        StartCoroutine(ReloadSequence(reloadDelay));
+        if (!isReloading) { 
+            StartCoroutine(ReloadSequence(reloadDelay));}
 
     }
 

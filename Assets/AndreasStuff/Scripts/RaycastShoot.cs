@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastShoot : MonoBehaviour
+public class RaycastShoot : Weapon
 {
-    public int gunDamage = 1;
-    public float fireRate = .25f;
-    public float weaponRange = 50f;
+    //public float fireRate = .25f;
+    //public float weaponRange = 50f;
     public float hitForce = 100f;
-    public Transform gunEnd;
+    //public Transform gunEnd;
 
-    public int maxAmmo = 10;
-    private int currentAmmo;
-    public float reloadTime = 1f;
+    //public int maxAmmo = 10;
+    //private int currentAmmo;
+    //public float reloadTime = 1f;
 
     private Camera fpsCam;
     private WaitForSeconds shotDuration = new WaitForSeconds(.07f);
@@ -21,45 +20,36 @@ public class RaycastShoot : MonoBehaviour
     private float nextFire;
     public float charge;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    override public void Start()
     {
-        if (currentAmmo == -1)
-            currentAmmo = maxAmmo;
+        curAmmo = maxAmmo;
 
         laserline = GetComponent<LineRenderer>();
         gunAudio = GetComponent<AudioSource>();
         fpsCam = GetComponentInParent<Camera>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (currentAmmo <= 0)
-        {
-            StartCoroutine(Reload());
-            return;
-        }
-            
+    }
 
-		if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+    public override void PrimaryFire()
+    {
+        if (canShoot)
         {
             //WIDTH?? set min
             laserline.startWidth = 0.01f;
-            nextFire = Time.time + fireRate;
+            nextFire = Time.time + rateOfFire;
             StartCoroutine(ShotEffect());
             Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
             RaycastHit hit;
-            laserline.SetPosition(0, gunEnd.position);
+            laserline.SetPosition(0, firePoint.position);
 
-            if (Physics.Raycast (rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
+            if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, range))
             {
                 laserline.SetPosition(1, hit.point);
-                ShootableBox health = hit.collider.GetComponent<ShootableBox>();
+                Health health = hit.collider.GetComponent<PlayerHealth>();
 
                 if (health != null)
                 {
-                    health.Damage(gunDamage);
+                    health.TakeDamage(damage);
                 }
 
                 if (hit.rigidbody != null)
@@ -69,41 +59,54 @@ public class RaycastShoot : MonoBehaviour
             }
             else
             {
-                laserline.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
+                laserline.SetPosition(1, rayOrigin + (fpsCam.transform.forward * range));
             }
+            curAmmo--;
+            shootTimer = 0;
         }
-        if (Input.GetButton("Fire2"))
+    }
+
+    public override void SecondaryFire()
+    {
+        if (canShoot)
         {
             //Charge
-            if(charge < 3)
+            if (charge < 5)
             {
                 charge += Time.deltaTime;
+
             }
         }
-        else if (Input.GetButtonUp("Fire2"))
-        {
-            float ouch = gunDamage + charge;
+    }
 
-            charge = Mathf.Clamp01(charge/3);
+    public override void Update()
+    {
+        base.Update();
+
+        if (charge > 5)
+        {
+            float ouch = damage + charge;
+
+            charge = Mathf.Clamp01(charge / 5);
             //WIDTH?? set new size
 
             laserline.startWidth = charge;
 
             Debug.Log("" + ouch);
-            nextFire = Time.time + fireRate;
+            nextFire = Time.time + rateOfFire;
             StartCoroutine(ShotEffect());
             Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
             RaycastHit hit;
-            laserline.SetPosition(0, gunEnd.position);
+            laserline.SetPosition(0, firePoint.position);
 
-            if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
+            if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, range))
             {
                 laserline.SetPosition(1, hit.point);
-                ShootableBox health = hit.collider.GetComponent<ShootableBox>();
+                Health health = hit.collider.GetComponent<PlayerHealth>();
 
                 if (health != null)
                 {
-                    health.Damage(ouch);
+                    health.TakeDamage((int)ouch);
                 }
 
                 if (hit.rigidbody != null)
@@ -113,25 +116,19 @@ public class RaycastShoot : MonoBehaviour
             }
             else
             {
-                laserline.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
+                laserline.SetPosition(1, rayOrigin + (fpsCam.transform.forward * range));
             }
-            charge = 0;
+            curAmmo -= (int)(damage + charge);
+            charge = 0; shootTimer = 0;
         }
 
     }
 
     private IEnumerator ShotEffect()
     {
-        gunAudio.Play();
         laserline.enabled = true;
         yield return shotDuration;
         laserline.enabled = false;
     }
 
-    IEnumerator Reload ()
-    {
-        Debug.Log("Reloading...");
-        yield return new WaitForSeconds(reloadTime);
-        currentAmmo = maxAmmo;
-    }
 }

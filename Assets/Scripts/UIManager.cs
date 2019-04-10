@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Slider healthBar;
     public Text ammoText;
     public GameObject hudPanel;
+    public GameObject deathPanel;
 
     void Awake()
     {
@@ -23,7 +24,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        
     }
 
 

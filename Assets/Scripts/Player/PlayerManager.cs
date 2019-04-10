@@ -58,6 +58,11 @@ public class PlayerManager : MonoBehaviour//Stephen
             gun = (GameObject)Instantiate(Resources.Load("SMG"), weaponPos);
             weapon = gun.GetComponent<Weapon>();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4) && weapon == null)
+        {
+            gun = (GameObject)Instantiate(Resources.Load("Gun"), weaponPos);
+            weapon = gun.GetComponent<Weapon>();
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
@@ -74,6 +79,8 @@ public class PlayerManager : MonoBehaviour//Stephen
     }
     public void Dead()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         playerHealth.isDead = true;
         playerMesh.SetActive(false);
         gun = null;
@@ -83,7 +90,23 @@ public class PlayerManager : MonoBehaviour//Stephen
         look.enabled = false;
         firstPersonCamera.GetComponent<DeathCam>().enabled = true;
         UIManager.instance.hudPanel.SetActive(false);
+        UIManager.instance.deathPanel.SetActive(true);
     }
-
+     public void Respawn()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        firstPersonCamera.transform.position = Vector3.zero;
+        playerHealth.curHealth = playerHealth.maxHealth;
+        transform.position = new Vector3(-1, -8, -9);
+        playerMesh.SetActive(true);
+        playerCollider.enabled = true;
+        movement.enabled = true;
+        look.enabled = true;
+        firstPersonCamera.GetComponent<DeathCam>().enabled = false;
+        UIManager.instance.hudPanel.SetActive(true);
+        UIManager.instance.deathPanel.SetActive(false);
+        playerHealth.isDead = false;
+    }
 
 }
