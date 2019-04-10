@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LocalPlayer
+  - StoneThrowerWall
+  - Minimap
   layers:
   - Default
   - TransparentFX
@@ -17,15 +20,17 @@ TagManager:
   - 
   - 
   - 
+  - Minimap
+  - Locked
+  - Bullet
+  - MapLayer
+  - walltest
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Locked
   - 
   - 
   - 

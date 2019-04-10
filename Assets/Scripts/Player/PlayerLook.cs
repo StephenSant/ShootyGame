@@ -1,25 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Camera))]
+
 public class PlayerLook : MonoBehaviour//Stephen
 {
-    public Camera firstPersonCamera;
-
-    public float sensitivityX = 0.025F;
-    public float sensitivityY = 0.025F;
-    public float minimumY = -1.5F;
-    public float maximumY = 1.5F;
+    PlayerManager manager;
+    public float sensitivityX = .75f;
+    public float sensitivityY = .75f;
+    public float minimumY = -75;
+    public float maximumY = 75;
 
     float rotationY, rotationX;
 
     private void Awake()
     {
-        firstPersonCamera = GetComponentInChildren<Camera>();
+        manager = GetComponent<PlayerManager>();
     }
 
     private void Start()
     {
+
         HideCursor(true);
     }
 
@@ -29,11 +29,11 @@ public class PlayerLook : MonoBehaviour//Stephen
         //looks up and down
         rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);//CLAMP!
-        firstPersonCamera.transform.localRotation = Quaternion.EulerAngles(-rotationY,0, 0);
+        manager.firstPersonCamera.transform.localRotation = Quaternion.Euler(-rotationY,0, 0);
 
         //looks left and right
         rotationX += Input.GetAxis("Mouse X") * sensitivityX;
-        transform.rotation = Quaternion.EulerAngles(0,rotationX,0);
+        transform.rotation = Quaternion.Euler(0,rotationX,0);
     }
 
     public void HideCursor(bool hide)
