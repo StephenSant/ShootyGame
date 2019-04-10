@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class Manager : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
 
     public void LoadGame()
