@@ -83,14 +83,17 @@ public class SebWeapon : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Rate of Fire
         timerToFire += Time.deltaTime;
 
         if (timerToFire >= maxRateOfFireTime)
         {
             ifCanShoot = true;
         }
+        // Out of ammo
         if (currentAmmo <= 0)
         {
+            // Can't shoot
             currentAmmo = 0;
             ifCanShoot = false;
         }
@@ -116,8 +119,10 @@ public class SebWeapon : MonoBehaviour
 
         if (currentAmmo <= 0 || currentAmmo < ammo)
         {
+            // If R is pressed
             if (Input.GetKeyDown(KeyCode.R))
             {
+                // Reload weapon
                 Reload();
             }
         }

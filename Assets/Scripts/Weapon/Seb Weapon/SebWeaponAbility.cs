@@ -7,7 +7,8 @@ public class SebWeaponAbility : MonoBehaviour
 
     public bool dash;
     public bool dashCool;
-    public float dashDuration = 0.005f;
+    public float speed;
+    public float dashDuration = 1f;
     public float dashSpeed = 50f;
     public float dashTimer = 0f;
     public float dashCooldown = 5f;
@@ -18,7 +19,8 @@ public class SebWeaponAbility : MonoBehaviour
 
     private void Start()
     {
-        controller = GetComponent<PlayerMovement>();
+        controller = GetComponentInParent<PlayerMovement>();
+
 
     }
 
@@ -37,7 +39,7 @@ public class SebWeaponAbility : MonoBehaviour
         // When the dash is enabled
         if (dash == true)
         {
-            onCoolDown = true;
+
             // start dash timer
             dashTimer += Time.deltaTime;
             // set your speed from 10 to 30
@@ -47,10 +49,14 @@ public class SebWeaponAbility : MonoBehaviour
             {
                 Debug.Log("Dash Working");
                 // dash = false
-                dash = false;             
-
+                dash = false;
+                onCoolDown = true;
                 // Set speed to normal
-                controller.moveSpeed = controller.startSpeed;
+                if(dash == false)
+                {
+                    controller.moveSpeed = speed;
+                }
+
                 // set your timer to 0
                 dashTimer = 0f;
             }
