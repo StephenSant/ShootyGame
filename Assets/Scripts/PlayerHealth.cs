@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealth : Health
 {
     PlayerManager manager;
+    public bool isBot=false;
 
     private void Awake()
     {
@@ -30,7 +31,8 @@ public class PlayerHealth : Health
             //you are dead, no big suprise
             if (!isDead)
             {
-                manager.Dead();
+                if (isBot) { Destroy(gameObject); }
+                else { manager.Dead();}
             }
         }
     }

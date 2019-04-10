@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour//Stephen
     void Update()
     {
 
-        UI.instance.healthBar.value = playerHealth.curHealth;
+        UIManager.instance.healthBar.value = playerHealth.curHealth;
 
         if (weapon != null)
         {
@@ -82,7 +82,7 @@ public class PlayerManager : MonoBehaviour//Stephen
         movement.enabled = false;
         look.enabled = false;
         firstPersonCamera.GetComponent<DeathCam>().enabled = true;
-        UI.instance.hudPanel.SetActive(false);
+        UIManager.instance.hudPanel.SetActive(false);
     }
 
 
